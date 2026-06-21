@@ -1,0 +1,7 @@
+node_modules/
+data/render-temp/
+data/videos/*.mp4
+assets/audio/*.mp3
+assets/audio/*.wav
+assets/audio/*.m4a
+*.log

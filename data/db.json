@@ -1,0 +1,116 @@
+{
+  "classes": [
+    {
+      "id": "class-neulbom-5-2",
+      "name": "늘봄초 5학년 2반",
+      "code": "대한-815",
+      "teacher": "한누리 선생님"
+    }
+  ],
+  "students": [
+    {
+      "id": "demo-student",
+      "classId": "class-neulbom-5-2",
+      "name": "김하늘",
+      "state": {
+        "user": {
+          "name": "김하늘",
+          "className": "늘봄초 5학년 2반",
+          "code": "대한-815"
+        },
+        "lessonStep": {
+          "1": 1,
+          "2": 2,
+          "3": 2
+        },
+        "scores": {
+          "history": 0,
+          "escape": 0,
+          "meaning": 0,
+          "blanks": 0,
+          "singing": 0,
+          "video": 0
+        },
+        "complete": {
+          "1": false,
+          "2": false,
+          "3": false
+        },
+        "quizAnswer": 1,
+        "escapeOrder": [],
+        "transcript": "",
+        "singingScore": 0,
+        "group": {
+          "name": "무궁화 탐험대",
+          "members": [
+            "김하늘",
+            "이도윤",
+            "박서아",
+            "최지우"
+          ]
+        }
+      },
+      "updatedAt": "2026-06-21T16:54:01.244Z"
+    },
+    {
+      "id": "student-doyun",
+      "classId": "class-neulbom-5-2",
+      "name": "이도윤",
+      "state": {
+        "complete": {
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "scores": {
+          "history": 15,
+          "escape": 20,
+          "meaning": 15,
+          "blanks": 15,
+          "singing": 23,
+          "video": 10
+        }
+      }
+    },
+    {
+      "id": "student-seoa",
+      "classId": "class-neulbom-5-2",
+      "name": "박서아",
+      "state": {
+        "complete": {
+          "1": true,
+          "2": true,
+          "3": false
+        },
+        "scores": {
+          "history": 14,
+          "escape": 18,
+          "meaning": 15,
+          "blanks": 12,
+          "singing": 8,
+          "video": 0
+        }
+      }
+    },
+    {
+      "id": "student-jiwoo",
+      "classId": "class-neulbom-5-2",
+      "name": "최지우",
+      "state": {
+        "complete": {
+          "1": true,
+          "2": false,
+          "3": false
+        },
+        "scores": {
+          "history": 12,
+          "escape": 20,
+          "meaning": 10,
+          "blanks": 0,
+          "singing": 0,
+          "video": 0
+        }
+      }
+    }
+  ]
+}
