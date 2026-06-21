@@ -52,7 +52,7 @@ async function body(req) {
 }
 function cleanState(input = {}) {
   // 음성 파일·blob·그림 data URL은 서버에 저장하지 않는다.
-  const allowed = ["user","lessonStep","scores","complete","quizAnswer","escapeOrder","transcript","singingScore","group"];
+  const allowed = ["user","lessonStep","scores","complete","quizAnswer","escapeGame","transcript","singingScore","group"];
   return Object.fromEntries(allowed.filter(k => input[k] !== undefined).map(k => [k, input[k]]));
 }
 function scoreOf(student) { return Object.values(student.state?.scores || {}).reduce((a, b) => a + Number(b || 0), 0); }
