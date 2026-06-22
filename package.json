@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "check": "node --check src/app.js && node --check server.mjs"
+    "check": "node --check src/app.js && node --check src/escape-game.js && node --check server.mjs",
+    "test": "node tests/escape-game.test.mjs"
   },
   "dependencies": {
     "busboy": "^1.6.0",
