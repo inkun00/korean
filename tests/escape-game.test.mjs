@@ -9,6 +9,12 @@ for (const room of ESCAPE_ROOMS) {
 const firstRoomView = renderEscape({ ...newEscapeGame(), started:true, startedAt:Date.now() });
 assert.match(firstRoomView, /escape-scene-visual/, "scene visual renders before the puzzle");
 assert.match(firstRoomView, /장면 속으로/, "scene narration label renders");
+assert.ok(ESCAPE_ROOMS[0].items.every(item => item.headline && item.excerpt && item.clue), "newspaper cards include readable article content");
+const openedArticleGame = { ...newEscapeGame(), started:true, startedAt:Date.now() };
+openedArticleGame.interaction.openedItem = "a";
+const openedArticleView = renderEscape(openedArticleGame);
+assert.match(openedArticleView, /자주와 독립을 바라는 노래/, "clicked newspaper article detail renders");
+assert.match(openedArticleView, /분류 단서/, "article classification clue renders");
 
 assert.equal(ESCAPE_ROOMS.length, 12, "핵심 10개와 보너스 2개가 있어야 한다");
 assert.equal(ESCAPE_ROOMS.filter(x => x.bonus).length, 2, "보너스 방은 2개여야 한다");
