@@ -1,5 +1,14 @@
 import assert from "node:assert/strict";
-import { ESCAPE_ROOMS, endingFor, finalEscapeScore, newEscapeGame, nextRoom, submitRoom, useHint } from "../src/escape-game.js";
+import { ESCAPE_ROOMS, endingFor, finalEscapeScore, newEscapeGame, nextRoom, renderEscape, submitRoom, useHint } from "../src/escape-game.js";
+
+assert.equal(new Set(ESCAPE_ROOMS.map(room => room.image)).size, 12, "each room uses a distinct scene image");
+for (const room of ESCAPE_ROOMS) {
+  assert.match(room.image, /^\/public\/escape\/[\w-]+\.png$/, `${room.id} image path`);
+  assert.ok(room.scene.length >= 80, `${room.id} has detailed scene narration`);
+}
+const firstRoomView = renderEscape({ ...newEscapeGame(), started:true, startedAt:Date.now() });
+assert.match(firstRoomView, /escape-scene-visual/, "scene visual renders before the puzzle");
+assert.match(firstRoomView, /장면 속으로/, "scene narration label renders");
 
 assert.equal(ESCAPE_ROOMS.length, 12, "핵심 10개와 보너스 2개가 있어야 한다");
 assert.equal(ESCAPE_ROOMS.filter(x => x.bonus).length, 2, "보너스 방은 2개여야 한다");

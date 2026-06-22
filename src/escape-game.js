@@ -1,6 +1,21 @@
 export const ESCAPE_DURATION_SEC = 1800;
 
-export const ESCAPE_ROOMS = [
+const SCENE_DETAILS = {
+  newspaper1896:{image:"/public/escape/01-newspaper-1896.png",scene:"무거운 나무문을 밀자 오래된 종이와 잉크 냄새가 훅 끼쳐 와요. 천장까지 닿은 서랍장에서 신문들이 바람도 없는데 한 장씩 빠져나와 날아다니고, 방 한가운데 분류대에는 서로 모습이 다른 기사 세 장이 놓여 있어요. 맞은편 출구의 황동 시간자물쇠는 기사들이 올바른 기록함에 들어가기를 기다리며 낮게 째깍거립니다."},
+  empire1902:{image:"/public/escape/02-empire-score-1902.png",scene:"신문방의 자물쇠가 열리자 금빛 장식이 번지는 황실 음악 보관실로 이어져요. 검푸른 비단 탁자 위에는 악보 표지가 네 조각으로 찢겨 있고, 주변의 금관악기들은 아무도 건드리지 않았는데 낮은 음을 웅웅 울려요. 자개장 중앙의 잠금쇠에는 조각난 악보와 작곡가 기록을 올바른 순서로 복원하라는 표시가 떠올라요."},
+  chanmiga:{image:"/public/escape/03-chanmiga-library.png",scene:"좁은 회랑 끝에서 두 갈래 빛이 비치는 서가가 나타나요. 왼쪽과 오른쪽 독서대에는 닮은 『찬미가』 두 권이 놓였지만 표지의 인장과 기록 연도가 서로 달라, 어느 한쪽을 치우면 다른 책이 더 밝게 빛나요. 공중에 뜬 의문노트가 두 책 사이를 오가며 하나를 없애지 말고 기록의 차이를 보라는 듯 빈 페이지를 펼칩니다."},
+  oldMelody:{image:"/public/escape/04-old-melody-corridor.png",scene:"서가 뒤 비밀문을 통과하자 긴 석조 복도 바닥에 세 갈래 음표 길이 흐르기 시작해요. 앞쪽의 가사 카드들은 푸른 선율과 붉은 선율 사이에서 방향을 잃었고, 왼편 음악상자에서는 낯설지만 익숙한 스코틀랜드풍 멜로디가 희미하게 들려요. 어두운 쪽 장구 길은 막혀 있으므로 가사 카드가 실제로 따라갔던 곡조 길을 연결해야 다음 문이 열립니다."},
+  song1935:{image:"/public/escape/05-chicago-1935.png",scene:"복도 끝 문을 열자 겨울밤의 시카고가 보이는 작은 한인 연주홀이 펼쳐져요. 피아노 옆에서는 연주자들이 새 선율을 맞춰 보고 있고, 지휘대 앞 탁자에는 빛나는 기록 블록 세 개와 시대가 다른 가짜 블록 하나가 섞여 있어요. 연주는 첫 마디에서 계속 멈추고 있으니 연도·작곡가·사건을 정확히 배열해 새 곡의 기록을 완성해야 해요."},
+  approval1941:{image:"/public/escape/06-provisional-government-1941.png",scene:"연주가 완성되는 순간 무대 뒤편이 충칭의 임시정부 사무실로 바뀌어요. 책상 위 공보와 새 곡보는 붉은 끈으로 묶여 있고, 옆에는 의미가 다른 나무도장 세 개가 잉크패드 앞에 가지런히 놓여 있어요. 잘못된 도장을 찍으면 문서가 잠겨 버리므로 새 곡을 공식적으로 사용할 수 있게 하는 도장을 찾아야 합니다."},
+  record1942:{image:"/public/escape/07-record-workshop-1942.png",scene:"승인 도장이 빛나자 벽장이 열리고 기계음이 가득한 레코드공방이 나타나요. 중앙 회전판의 검은 음반에는 서로 다른 두 색의 홈이 나란히 새겨져 있지만 라벨 자리는 비어 있고, 낡은 축음기는 바늘을 올리지 못한 채 빙글빙글 돌아가요. 옛 곡조와 새 곡조가 함께 남은 사실을 찾아 두 라벨을 모두 완성해야 재생 손잡이가 풀립니다."},
+  chongqing1945:{image:"/public/escape/08-chongqing-printshop-1945.png",scene:"축음기의 마지막 소리를 따라가면 새벽빛이 들어오는 충칭의 인쇄소에 도착해요. 인쇄기에서는 악보가 계속 나오지만 한국어·중국어·영어 페이지가 빨랫줄과 제본대에 뒤섞여 책으로 묶이지 못하고 있어요. 발행 연도를 맨 앞에 두고 세 언어 페이지를 올바른 순서로 모아야 출판 상자 속 열쇠를 얻을 수 있습니다."},
+  spread1948:{image:"/public/escape/09-textbook-distribution-1948.png",scene:"제본된 악보 상자를 밀자 바닥 전체가 커다란 한반도 지도로 변해요. 지도 가장자리에는 교과서 수레들이 멈춰 서 있고 학교 모형, 공식 행사장, 개인 주택, 먼 외국 박물관으로 이어지는 길들이 서로 얽혀 있어요. 애국가가 전국의 어린이와 시민에게 퍼질 수 있도록 실제 보급의 중심이 된 두 장소에 수레를 보내야 합니다."},
+  committee1955:{image:"/public/escape/10-committee-1955.png",scene:"지도 위 마지막 수레가 도착하자 빗소리가 들리는 조사위원회 회의실로 이동해요. 긴 회의가 끝난 듯 의자들은 비어 있고, 탁자에는 두 후보의 두꺼운 서류철과 증거가 채워지지 않은 열린 기록철이 남아 있어요. 벽의 증거판은 붉은 실이 중간에서 끊겨 있으므로, 없는 자료를 만들어 내지 않고 조사 결과를 정직하게 기록해야 해요."},
+  ceremony1984:{image:"/public/escape/11-ceremony-hall-1984.png",scene:"조사위원회 뒤편의 보너스 문을 열면 서로 다른 두 행사장이 반씩 나뉜 강당이 보여요. 왼쪽은 붉은 융단과 단상이 마련된 큰 공식 행사장이고, 오른쪽은 의자와 작은 연단만 놓인 소규모 행사장이에요. 바닥의 절차 카드가 뒤섞여 있으니 행사 규모에 맞는 정식·약식 절차를 각각 찾아야 숨은 기록함이 열립니다."},
+  heritage2020:{image:"/public/escape/12-heritage-vault-2020.png",scene:"강당의 숨은 승강기가 차갑고 조용한 현대 문화유산 보존실에 멈춰요. 유리 보관함 안의 오래된 대한제국 애국가 악보는 금빛 조명을 받고 있고, 작업대에는 장갑·라벨·습도표·보존 상자와 함께 일반 풀과 맨손 경고가 섞여 있어요. 악보를 훼손하지 않을 네 가지 항목만 골라 마지막 기록 조각을 안전하게 봉인해야 합니다."}
+};
+
+const ESCAPE_ROOM_BASE = [
   { id:"newspaper1896",icon:"📰",year:"1896",title:"신문방",guide:"기록할머니: 애국가가 처음부터 딱 하나였을까? 기사 제목과 가사를 살펴보렴.",certainty:"resolved",mechanic:"drag",prompt:"기사 조각을 알맞은 기록함으로 옮기세요.",fact:"『독립신문』에는 제목은 애국가지만 가사가 서로 다른 여러 노래가 실렸어요.",items:[{id:"a",label:"애국가 1호 기사"},{id:"b",label:"애국가 2호 기사"},{id:"c",label:"애국가 3호 기사"}],zones:[{id:"same",label:"하나의 완성된 가사"},{id:"different",label:"서로 다른 여러 가사"}],correct:{a:"different",b:"different",c:"different"},artifact:"1896 독립신문",hints:["세 기사에서 반복되지 않는 낱말을 찾아보세요.","기사마다 가사가 서로 달라요.","세 조각을 모두 ‘서로 다른 여러 가사’ 기록함에 넣으세요."]},
   { id:"empire1902",icon:"🎼",year:"1902",title:"황실악보실",guide:"한별: 흩어진 악보 표지를 순서대로 맞추면 작곡가의 이름이 나타날 거야!",certainty:"resolved",mechanic:"sequence",prompt:"악보 표지 조각을 올바른 순서로 눌러 조립하세요.",fact:"대한제국 애국가는 현재 애국가와 다른 노래이며 프란츠 에케르트가 작곡했어요.",tokens:[{id:"empire",label:"대한제국"},{id:"anthem",label:"애국가"},{id:"eckert",label:"프란츠 에케르트"},{id:"score",label:"악보 완성"}],correct:["empire","anthem","eckert","score"],artifact:"대한제국 애국가 악보",hints:["노래의 나라 이름부터 놓아 보세요.","제목 뒤에 작곡가 이름이 와요.","대한제국 → 애국가 → 프란츠 에케르트 → 악보 완성 순서예요."]},
   { id:"chanmiga",icon:"📚",year:"1905/1908",title:"찬미가서가",guide:"의문노트: 어떤 책은 1905년, 어떤 책은 1908년이라고 적혀 있어. 하나를 지우면 될까?",certainty:"contested",mechanic:"multi",prompt:"기록에서 확인해야 할 카드를 모두 선택하세요.",fact:"『찬미가』에 현행 가사 계열이 실렸으며 발행 연도는 자료에 따라 1905년 또는 1908년으로 설명돼요.",options:[{id:"1905",label:"1905년이라는 기록"},{id:"1908",label:"1908년이라는 기록"},{id:"different",label:"자료마다 다르게 적혀 있음"},{id:"one",label:"한 연도만 무조건 정답"}],correct:["1905","1908","different"],artifact:"두 갈래 찬미가 연도표",flag:"acceptedUncertaintyChanmiga",hints:["두 책의 연도를 모두 살펴보세요.","서로 다른 기록을 함께 남길 수 있어요.","1905년·1908년·자료마다 다름, 세 카드를 선택하세요."]},
@@ -14,6 +29,15 @@ export const ESCAPE_ROOMS = [
   { id:"ceremony1984",icon:"🏛️",year:"1984 · 보너스",title:"국민의례강당",guide:"한별: 행사 규모에 맞는 국민의례 카드를 모두 찾아 보너스 기록을 열자!",certainty:"resolved",mechanic:"multi",bonus:true,prompt:"올바른 행사 절차 카드 두 장을 선택하세요.",fact:"1984년 애국가 제창이 규정에 명문화됐고 오늘날 정식·약식 절차가 사용돼요.",options:[{id:"formal",label:"정식 행사: 정식 절차"},{id:"simple",label:"소규모 행사: 약식 절차"},{id:"none",label:"모든 행사에서 애국가 생략"}],correct:["formal","simple"],artifact:"1984 국민의례 카드",hints:["행사 규모가 서로 달라요.","정식과 약식 절차가 모두 있어요.","정식 행사와 소규모 행사 카드를 선택하세요."]},
   { id:"heritage2020",icon:"🧤",year:"2020 · 보너스",title:"문화유산보관함",guide:"기록할머니: 오래된 악보를 안전하게 보관할 도구만 골라 주렴.",certainty:"resolved",mechanic:"multi",bonus:true,prompt:"보존 상자에 넣을 네 가지 항목을 모두 선택하세요.",fact:"2020년 「대한제국애국가」가 국가등록문화유산으로 등록됐어요.",options:[{id:"score",label:"대한제국 애국가 악보"},{id:"gloves",label:"보존 장갑"},{id:"label",label:"기록 라벨"},{id:"humidity",label:"습도표"},{id:"glue",label:"일반 풀"},{id:"hands",label:"맨손"}],correct:["score","gloves","label","humidity"],artifact:"2020 문화유산 보존함",hints:["악보를 상하게 하지 않는 도구를 골라요.","장갑·라벨·습도 관리가 필요해요.","악보·장갑·라벨·습도표를 선택하세요."]}
 ];
+
+export const ESCAPE_ROOMS = ESCAPE_ROOM_BASE.map(room=>{
+  const detail=SCENE_DETAILS[room.id];
+  return {
+    ...room,
+    ...detail,
+    prompt:`<span class="escape-scene-visual"><img src="${detail.image}" alt="${room.title} 방탈출 장면" loading="eager"><span class="escape-scene-caption"><b>장면 속으로</b><span>${detail.scene}</span></span></span><span class="escape-room-mission"><b>이번 방의 임무</b><span>${room.prompt}</span></span>`
+  };
+});
 
 export function newEscapeGame(){return{started:false,roomIndex:0,roomSolved:false,score:0,historicalTrust:100,hintsUsed:0,mistakeCount:0,roomMistakes:0,artifacts:[],flags:{acceptedUncertaintyChanmiga:false,acceptedUnresolvedLyricist:false},feedback:null,hintLevel:0,startedAt:null,interaction:{selected:[],sequence:[],placements:{},held:null},forcedEnding:null}}
 export function normalizeEscapeGame(value){const base=newEscapeGame();return{...base,...value,flags:{...base.flags,...value?.flags},interaction:{...base.interaction,...value?.interaction}}}
