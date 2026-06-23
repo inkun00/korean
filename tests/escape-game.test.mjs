@@ -9,15 +9,16 @@ for (const room of ESCAPE_ROOMS) {
 const firstRoomView = renderEscape({ ...newEscapeGame(), started:true, startedAt:Date.now() });
 assert.match(firstRoomView, /escape-scene-visual/, "scene visual renders before the puzzle");
 assert.match(firstRoomView, /장면 속으로/, "scene narration label renders");
-assert.ok(ESCAPE_ROOMS[0].items.every(item => item.section && item.headline && item.lead && item.body.length >= 4 && item.vocabulary.length >= 2 && item.clue), "newspaper cards include complete news structure");
+assert.ok(ESCAPE_ROOMS[0].items.every(item => item.section && item.headline && item.original.length >= 8 && item.vocabulary.length >= 4 && item.sourceUrl.includes("nl.go.kr")), "newspaper cards include verified original text and source");
 const openedArticleGame = { ...newEscapeGame(), started:true, startedAt:Date.now() };
 openedArticleGame.interaction.openedItem = "a";
 const openedArticleView = renderEscape(openedArticleGame);
-assert.match(openedArticleView, /자주·독립 염원한 새 노래 실려/, "clicked newspaper headline renders");
+assert.match(openedArticleView, /인쳔 졔물포 뎐경 국가/, "original newspaper headline renders");
 assert.match(openedArticleView, /독 립 신 문/, "newspaper masthead renders");
 assert.match(openedArticleView, /분류 단서/, "article classification clue renders");
-assert.match(openedArticleView, /낱말 풀이/, "article vocabulary help renders");
-assert.match(openedArticleView, /오늘날 부르는 애국가와 가사는 같지 않다/, "full article body renders in newspaper voice");
+assert.match(openedArticleView, /옛말 풀이/, "historic vocabulary help renders separately");
+assert.match(openedArticleView, /봉츅세 봉츅 아국태평 봉츅세/, "verified original article text renders");
+assert.match(openedArticleView, /대한민국 신문 아카이브에서 원문 확인/, "official source link renders");
 
 assert.equal(ESCAPE_ROOMS.length, 12, "핵심 10개와 보너스 2개가 있어야 한다");
 assert.equal(ESCAPE_ROOMS.filter(x => x.bonus).length, 2, "보너스 방은 2개여야 한다");
