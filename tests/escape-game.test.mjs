@@ -9,7 +9,7 @@ for (const room of ESCAPE_ROOMS) {
 const firstRoomView = renderEscape({ ...newEscapeGame(), started:true, startedAt:Date.now() });
 assert.match(firstRoomView, /escape-scene-visual/, "scene visual renders before the puzzle");
 assert.match(firstRoomView, /장면 속으로/, "scene narration label renders");
-assert.ok(ESCAPE_ROOMS[0].items.every(item => item.section && item.headline && item.original.length >= 8 && item.vocabulary.length >= 4 && item.sourceUrl.includes("nl.go.kr")), "newspaper cards include verified original text and source");
+assert.ok(ESCAPE_ROOMS[0].items.every(item => item.section && item.headline && item.original.length >= 8 && item.translation.length === item.original.length && item.vocabulary.length >= 4 && item.sourceUrl.includes("nl.go.kr")), "newspaper cards include aligned original and translation text");
 const openedArticleGame = { ...newEscapeGame(), started:true, startedAt:Date.now() };
 openedArticleGame.interaction.openedItem = "a";
 const openedArticleView = renderEscape(openedArticleGame);
@@ -18,6 +18,8 @@ assert.match(openedArticleView, /독 립 신 문/, "newspaper masthead renders")
 assert.match(openedArticleView, /분류 단서/, "article classification clue renders");
 assert.match(openedArticleView, /옛말 풀이/, "historic vocabulary help renders separately");
 assert.match(openedArticleView, /봉츅세 봉츅 아국태평 봉츅세/, "verified original article text renders");
+assert.match(openedArticleView, /봉축하세 봉축하세 우리나라의 평안을 축하하세/, "modern Korean translation renders beside the original");
+assert.match(openedArticleView, /현대어 번역/, "parallel translation heading renders");
 assert.match(openedArticleView, /대한민국 신문 아카이브에서 원문 확인/, "official source link renders");
 
 assert.equal(ESCAPE_ROOMS.length, 12, "핵심 10개와 보너스 2개가 있어야 한다");
